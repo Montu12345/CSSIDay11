@@ -23,11 +23,13 @@ function setup() {
   text("Stop", 10, 20)
 }
 
+//computes the distance between two points.
 function computeDistance(point1, point2){
   distance = sqrt((point2.x - point1.x)**2 + (point2.y - point1.y)**2);
   return distance
 }
 
+//catagorizes the distance of two points from each other. Either hot, cold, or warm.
 function computeCategoryOfDistance(point1, point2){
   distance = computeDistance(point1, point2);
   if (distance < 50){
@@ -47,17 +49,22 @@ function computeCategoryOfDistance(point1, point2){
 
 function draw() {
   //ellipse(spherePosition.x, spherePosition.y, 20, 20);
+  
+  //drawing rectangles to make maze.
   rect(width - rectPosition.xLength, 60, rectPosition.xLength, rectPosition.yLength);
   rect(width - rectPosition.xLength, 200, rectPosition.xLength, rectPosition.yLength);
   rect(width - rectPosition.xLength, 360, rectPosition.xLength, rectPosition.yLength);
   rect(rectPosition.xLength, 260, rectPosition.xLength, rectPosition.yLength);
   rect(rectPosition.xLength, 140, rectPosition.xLength, rectPosition.yLength);
   stroke(30, 50, 100);
+  
+  //start drawing the line when the mouse is pressed down.
   if (mouseIsPressed){
     line(prevX, prevY, mouseX, mouseY);
   }
   //collidePointRect(pointX, pointY, x, y, width, height)
 
+  //if the mouse collides with the rectange, change the color of the rectanges to red.
   if (collidePointRect(mouseX, mouseY, width - rectPosition.xLength, 60, rectPosition.xLength, rectPosition.yLength)){
     stroke(10, 50, 100);
   }
